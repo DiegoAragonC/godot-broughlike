@@ -1,5 +1,5 @@
 extends Node
 
-const TILE_SIZE = 32
+const LEVEL_SIZE = 9
 
-enum tile_types {FLOOR, WALL}
+var level = null
