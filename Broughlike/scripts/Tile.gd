@@ -69,6 +69,16 @@ func get_passable_neighbors(tile_x, tile_y, tile_array = Globals.level):
 			filtered.append(pos)
 	return filtered
 
+func get_neighbors_of_type(tile_type, tile_x, tile_y, tile_array = Globals.level):
+	var neighbors = get_neighbors(tile_x, tile_y)
+	var filtered = []
+	for n in neighbors:
+		var pos = n
+		if is_type(tile_type, pos, tile_array):
+			filtered.append(pos)
+	return filtered
+	 
+
 
 func get_at(tile_pos, tile_array = Globals.level):
 	if not is_in_level(tile_pos):
@@ -77,8 +87,12 @@ func get_at(tile_pos, tile_array = Globals.level):
 
 
 func is_passable(tile_pos, tile_array = Globals.level):
-	return get_at(tile_pos, tile_array) == Tile.type.FLOOR
+	return is_type(type.FLOOR, tile_pos, tile_array)
 
+
+func is_type(tile_type, tile_pos, tile_array = Globals.level):
+	return get_at(tile_pos, tile_array) == tile_type
+	
 
 func is_in_level(tile_pos):
 	return tile_pos.x >= 0 and tile_pos.x < Globals.LEVEL_SIZE and\
@@ -87,6 +101,5 @@ func is_in_level(tile_pos):
 
 func is_border(x, y):
 	return x == 0 or x == Globals.LEVEL_SIZE-1 or y == 0 or y == Globals.LEVEL_SIZE-1
-
 
 

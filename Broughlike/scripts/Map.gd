@@ -37,7 +37,9 @@ func draw_level(level):
 			tile_map.set_cell(x, y, level[x][y])
 
 
-
+func change_tile(tile_pos, tile_type):
+	level[tile_pos.x][tile_pos.y] = tile_type
+	draw_level(level)
 
 
 

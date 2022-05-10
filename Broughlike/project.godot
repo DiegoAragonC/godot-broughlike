@@ -16,8 +16,8 @@ run/main_scene="res://scenes/Game.tscn"
 [autoload]
 
 Util="*res://scripts/Util.gd"
-Tile="*res://Tile.gd"
-Globals="*res://Globals.gd"
+Tile="*res://scripts/Tile.gd"
+Globals="*res://scripts/Globals.gd"
 
 [display]
 

@@ -1,16 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://sprites/maguy_move.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/tank_temp.png" type="Texture" id=1]
+[ext_resource path="res://Tank.gd" type="Script" id=2]
 
-[node name="Player" type="Node2D"]
+[node name="Tank" type="Node2D"]
 script = ExtResource( 2 )
 hp = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
-hframes = 2
-frame = 1
 
 [node name="Hp" type="Node2D" parent="."]

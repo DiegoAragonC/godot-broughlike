@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/Bird.gd" type="Script" id=1]
-[ext_resource path="res://sprites/bird_move.png" type="Texture" id=2]
+[ext_resource path="res://Snake.gd" type="Script" id=1]
+[ext_resource path="res://sprites/snake_move.png" type="Texture" id=2]
 
-[node name="Bird" type="Node2D"]
+[node name="Snake" type="Node2D"]
 script = ExtResource( 1 )
-hp = 2
+hp = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
