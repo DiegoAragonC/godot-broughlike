@@ -2,10 +2,11 @@ extends Node2D
 
 var player_scene = preload("res://scenes/Player.tscn")
 var bird_scene = preload("res://scenes/Bird.tscn")
-var snake_scene = preload("res://Snake.tscn")
-var tank_scene = preload("res://Tank.tscn")
-var eater_scene = preload("res://Eater.tscn")
-var jester_scene = preload("res://Jester.tscn")
+var snake_scene = preload("res://scenes/Snake.tscn")
+var tank_scene = preload("res://scenes/Tank.tscn")
+var eater_scene = preload("res://scenes/Eater.tscn")
+var jester_scene = preload("res://scenes/Jester.tscn")
+var tomb_scene = preload("res://scenes/Tomb.tscn")
 
 var monster_scenes = [bird_scene, snake_scene, tank_scene, eater_scene, jester_scene]
 var level = 1
@@ -59,6 +60,11 @@ func _on_Monster_tried_move(monster, target_pos):
 func _on_Monster_modified_map(tile_pos, tile_type):
 	Map.change_tile(tile_pos, tile_type)
 		
+		
+func _on_Monster_died(monster, pos):
+	if monster.is_in_group("player"):
+		var t = tomb_scene.instance()
+		t.position = pos
+		add_child(t)
 
-	
 

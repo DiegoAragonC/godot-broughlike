@@ -2,13 +2,14 @@ extends Node2D
 
 signal tried_move(target_pos)
 signal modified_map(tile_pos, tile_type)
+signal died(monster, pos)
 
 const step_size = Tile.SIZE
 
 export (float) var hp
 export (float) var max_hp = 4
 
-var heart_scene = preload("res://Heart.tscn")
+var heart_scene = preload("res://scenes/Heart.tscn")
 var map_pos
 var attacked_this_turn = false
 var stunned = false
@@ -23,6 +24,7 @@ func _ready():
 func initialize(start_pos, connection):
 	connect("tried_move", connection, "_on_Monster_tried_move")
 	connect("modified_map", connection, "_on_Monster_modified_map")
+	connect("died", connection, "_on_Monster_died")
 	
 	map_pos = start_pos
 	move(start_pos)
@@ -84,8 +86,10 @@ func hit(dmg):
 	
 		
 func die():
+	emit_signal("died", self, global_position)
 	queue_free()
 	
 func heal(amount):
 	hp = min(max_hp, hp + amount)
 	draw_hp()
+	

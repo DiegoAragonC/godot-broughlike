@@ -1,8 +1,10 @@
 extends "res://scripts/Monster.gd"
 
+var tomb_scene = preload("res://scenes/Tomb.tscn")
+
 func _ready():
 	add_to_group("player")
-
+	
 
 func _input(event):
 	var step_dir = Vector2()
@@ -21,3 +23,6 @@ func _input(event):
 		animate(step_dir.x)
 
 
+func generate_tomb():
+	var t = tomb_scene.instance()
+	t.global_position = global_position

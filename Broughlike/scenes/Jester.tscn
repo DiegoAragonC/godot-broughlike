@@ -1,14 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://sprites/tank_temp.png" type="Texture" id=1]
-[ext_resource path="res://Tank.gd" type="Script" id=2]
+[ext_resource path="res://sprites/jester_walk.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Jester.gd" type="Script" id=2]
 
-[node name="Tank" type="Node2D"]
+[node name="Jester" type="Node2D"]
 script = ExtResource( 2 )
-hp = 3
+hp = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
+hframes = 2
 
 [node name="Hp" type="Node2D" parent="."]
