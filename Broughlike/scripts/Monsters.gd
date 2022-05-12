@@ -18,6 +18,15 @@ func tick():
 	var player_pos = get_player().map_pos
 	
 	for m in get_children():
-		if not m.is_in_group("player"):
+		if m.stunned or m.teleport_counter > 0:
+			m.teleport_counter -= 1
+			m.stunned = false
+		elif not m.appeared:
+			m.appear()
+		elif not m.is_in_group("player"):
 			m.take_turn(player_pos)
 
+
+func clear_all():
+	for m in get_children():
+		m.queue_free()

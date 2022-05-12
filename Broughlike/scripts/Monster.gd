@@ -13,13 +13,16 @@ var heart_scene = preload("res://scenes/Heart.tscn")
 var map_pos
 var attacked_this_turn = false
 var stunned = false
+var teleport_counter = Globals.monster_appear_turns
+var appeared = false
 
 onready var Monsters = get_node("..")
 
 
 func _ready():
 	add_to_group("monsters")
-	draw_hp()
+	$Sprite.hide()
+	
 
 func initialize(start_pos, connection):
 	connect("tried_move", connection, "_on_Monster_tried_move")
@@ -39,12 +42,13 @@ func try_move(tile_pos):
 	emit_signal("tried_move", self, tile_pos)
 	
 
+func appear():
+	$Sprite.show()
+	draw_hp()
+	appeared = true
+
 
 func take_turn(player_pos):
-	if stunned:
-		stunned = false
-		return
-		
 	var neighbors = Tile.get_passable_neighbors(map_pos.x, map_pos.y) 
 	var closest = Util.closest_to(neighbors, player_pos)
 	var move_dir = -1 if closest.x < map_pos.x else 1
@@ -72,6 +76,7 @@ func draw_hp():
 		h.position.x = (heart_size + pad) * i
 		h.position.y = Tile.SIZE - heart_size
 		$Hp.add_child(h)
+
 
 func clear_hp():
 	for h in $Hp.get_children():

@@ -4,7 +4,7 @@ extends Node2D
 var level = []
 
 
-func _ready():
+func generate():
 	randomize()
 	level = generate_level(Globals.LEVEL_SIZE)
 	draw_level(level)

@@ -2,9 +2,12 @@ extends "res://scripts/Monster.gd"
 
 var tomb_scene = preload("res://scenes/Tomb.tscn")
 
+
 func _ready():
 	add_to_group("player")
-	
+	teleport_counter = 0
+	appear()
+
 
 func _input(event):
 	var step_dir = Vector2()
